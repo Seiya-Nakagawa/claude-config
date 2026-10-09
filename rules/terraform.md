@@ -100,7 +100,7 @@ Terraform 固有の確認観点は以下のとおり。
 ## 8. Apply 確認（マージ後）
 
 マージ後に自動で本番 apply が走る構成の場合、AI はその CI の完了も監視し、実行 URL と結果を
-ユーザーに報告する（[git-workflow.md](git-workflow.md) 9.3 に従う）。
+ユーザーに報告する（[リリースフロー](../skills/feature-flow/release-flow.md) 1.3節に従う）。
 apply 結果がステージングと同件数であることを確認する。
 
 ## 9. 破壊的変更を含む PR の扱い

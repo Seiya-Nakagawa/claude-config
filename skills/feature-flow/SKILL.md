@@ -11,7 +11,8 @@ allowed-tools: Bash, Read, Write, Edit, Glob, Grep
 
 Issue 起票からマージまでの一連の流れを実行する。
 規約の詳細は [git-workflow.md](../../rules/git-workflow.md) に従う。
-Milestone・Project・`gh` の詳細手順は [GitHub 運用リファレンス](github-reference.md) を参照する。
+Milestone・Project・`gh` の詳細手順は [GitHub 運用リファレンス](github-reference.md)、
+CI 監視・マージ・対象別のリリース手順は [リリースフロー](release-flow.md) を参照する。
 PR ラベルは git-workflow.md 5章の標準ラベルを使う。
 CI のワークフロー名等の**リポジトリ固有の値は、
 プロジェクト個別の `CLAUDE.md` に従う**。
@@ -104,7 +105,8 @@ PR の URL をユーザーに提示して設計書内容のレビューを依頼
 
 ## 6. デプロイ・動作確認
 
-[git-workflow.md](../../rules/git-workflow.md) 12章のリリース方針に従う。
+[git-workflow.md](../../rules/git-workflow.md) 12章のリリース方針に従う
+（手順の詳細は [リリースフロー](release-flow.md)）。
 **CI の起動契機となるコード変更をコミット・プッシュする前に**、ローカルまたはステージング環境（プロジェクトごとに異なる。
 リポジトリ固有の値はプロジェクト個別の `CLAUDE.md` に従う）へデプロイし、動作確認を行う。
 デプロイ・確認の具体的な手順は、種別に応じた個別スキル（`/tf-deploy`・`/lambda-deploy`・

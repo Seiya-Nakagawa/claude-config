@@ -81,7 +81,7 @@ GitHub Actions のデプロイワークフローが存在する場合は、2〜4
 3. マージをトリガーに、ワークフローが `clasp push` で GAS へ反映する（CD）
 4. AI は CD の完了を監視して結果を報告し、ユーザーが GAS エディタで動作確認する
 
-- ローカルから `clasp push` で直接デプロイしない（[git-workflow.md](git-workflow.md) 12.2節の
+- ローカルから `clasp push` で直接デプロイしない（[git-workflow.md](git-workflow.md) 12章の
   「本番へのデプロイは常にマージ後の CD」の原則に従う）
 - clasp の認証情報（`.clasprc.json`）は GitHub Secrets で管理し、コード・ログに出力しない
 - デプロイ先が本番のみのため、動作確認はマージ後に行う。問題があれば修正 PR で対応する
