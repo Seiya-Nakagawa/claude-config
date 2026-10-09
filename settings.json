@@ -167,35 +167,37 @@
   "autoMode": {
     "soft_deny": [
       "$defaults",
-      "Bash(terraform apply:*) in /home/seiya/git/my-development/infra-oci-terraform — CLAUDE.md states apply is user-run, AI should stop at plan",
-      "Bash(ansible-playbook:*) without --check flag against ansible/hosts.yml in this repo — changes to real OCI servers"
+      "本番環境へのローカルからの `terraform plan` / `apply`・Lambda・GAS のデプロイ — 本番反映は常にマージ後の CD 経由（rules/git-workflow.md 12章、rules/terraform.md 6章）",
+      "`terraform apply` を、ドリフト（意図しない属性変更）を含む plan に対して実行する — ユーザーの指示を得てから行う（rules/terraform.md 3.1節）",
+      "`--check` なしの `ansible-playbook` を、ドライラン結果の提示とユーザー承認の前に実行する — 実機サーバーを変更する（rules/ansible.md）",
+      "`main` への直接 push、force push、ユーザー承認のない PR マージ（rules/git-workflow.md 6章）"
     ],
     "environment": [
       "### Org-wide",
       "**Organization**: None configured",
-      "**Cloud provider(s)**: Oracle Cloud Infrastructure (OCI) — this repo provisions OCI resources via Terraform",
-      "**Repository visibility**: PUBLIC — github.com/Seiya-Nakagawa/infra-oci (any push here is publishing)",
-      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
-      "**Secrets management**: Environment variables / `.env` (gitignored) and Terraform Cloud sensitive Variables; Ansible Vault for MySQL/server secrets (`ansible/.vault_password`, git-excluded)",
-      "**Default / protected branches**: `main` — ruleset active disabling direct pushes to `main` (classic branch protection lists none, but the ruleset is authoritative)",
-      "**CI/CD deploy targets**: Terraform Cloud (CLI-driven workflow, remote backend/state) for this repo's OCI infrastructure",
+      "**Cloud provider(s)**: 作業リポジトリの CLAUDE.md に記載されたもののみを対象とする。記載のないクラウド・アカウントへの操作は信頼範囲外",
+      "**Repository visibility**: 作業リポジトリは PUBLIC の場合が多い — push は公開を意味する。機密情報（tfvars・Vault パスワード・state・鍵・IP アドレス・アカウント ID）は可視性に関わらずコミットしない",
+      "**Internal sharing / snippet hosting**: None configured — 公開の paste / gist サービスは信頼境界の外として扱う",
+      "**Secrets management**: 環境変数 / `.env`（gitignore 済み）、SSM Parameter Store / Secrets Manager、Terraform Cloud の sensitive Variables、Ansible Vault",
+      "**Default / protected branches**: 各リポジトリの `main` — Ruleset `protect-default-branch`（削除禁止・force push 禁止・PR 必須）が全リポジトリで有効",
+      "**CI/CD deploy targets**: リポジトリごとに GitHub Actions（PR で CI / plan、main マージで CD）。具体値は各リポジトリの CLAUDE.md に従う",
       "**Network posture**: None configured",
-      "**Host containment**: None configured — assume Claude Code runs on an ordinary developer machine or CI runner with open internet",
-      "**Source control**: This repo (Seiya-Nakagawa/infra-oci) and its `origin` remote only",
+      "**Host containment**: None configured — 通常の開発マシンまたは CI ランナーで、インターネットに開放されている前提とする",
+      "**Source control**: 作業ディレクトリのリポジトリとその `origin` のみ。他のリポジトリへの push・書き込みは信頼範囲外",
       "**Trusted internal domains**: None configured",
       "**Trusted cloud buckets**: None configured",
       "**Key internal services**: None configured",
       "**Internal package registry**: None configured",
-      "**Sensitive data locations & audiences**: `terraform/*.tfvars`, `terraform/.terraform/terraform.tfstate`, `terraform/.terraform.lock.hcl`, `*.pem`, `ansible/.vault_password`, and `.env` — never commit; OCI credentials and MySQL/Ansible Vault secrets are personal-project confidential data, share with no one beyond the repo owner",
+      "**Sensitive data locations & audiences**: `*.tfvars`、Terraform state、`*.pem`、`*.key`、`.env`、`credentials.json`、Ansible Vault パスワード — コミット禁止。個人プロジェクトの機密情報として、リポジトリ所有者以外に共有しない",
       "**Data retention / declassification**: None configured",
-      "**Sensitive remote targets**: any namespace, host, or container whose name carries `prod` or `production` as a whole word or name segment; also treat the live OCI Compute instances managed by this repo's Terraform/Ansible as production infrastructure since `apply` and unrestricted Ansible runs affect real running servers",
-      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic",
-      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment; also this repo's OCI security-list and IAM policy definitions in `terraform/` given the CLAUDE.md's explicit least-privilege caution",
+      "**Sensitive remote targets**: 名前に `prod` / `production` を単語または名前の一部として含む namespace・ホスト・コンテナ、および Terraform / Ansible が管理する稼働中の本番インスタンス",
+      "**Protected deployment namespaces / environments**: None configured — Sensitive remote targets の基準に従う",
+      "**Protected IaC scopes**: IAM・RBAC・ネットワーク（セキュリティリスト等）・クォータ・ノードプール、および名前やタグに `prod` / `production` を含むリソース。最小権限の原則に従う",
       "### User-specific",
-      "**Primary use of Claude Code**: personal infrastructure-as-code development (Terraform + Ansible) for a hobby OCI deployment",
-      "**Trusted repo**: /home/seiya/git/my-development/infra-oci-terraform and its `origin` remote (github.com/Seiya-Nakagawa/infra-oci, PUBLIC) — since public, only this repo's own work belongs here; confidential material (tfvars, vault password, state, keys) must never be committed regardless of visibility",
+      "**Primary use of Claude Code**: 個人開発（Terraform / Ansible / Lambda / GAS / Django）のコード編集とインフラ運用",
+      "**Trusted repo**: 作業ディレクトリのリポジトリと、その `origin` のみ。公開リポジトリのため当該リポジトリ自身の成果物以外を置かない",
       "**Org-specific CLIs**: None configured",
-      "routine under scripts/ prefix: `./scripts/plan_tf.sh` and `./scripts/run_ansible.sh --check` are routine dry-run/plan operations in this repo; `./scripts/apply_tf.sh` and unrestricted `ansible-playbook` runs are user-gated per CLAUDE.md (\"apply はユーザーが実施する\")"
+      "routine: `~/.claude/scripts/tf_plan.sh` と `ansible-playbook --check` は定常のドライラン操作。`tf_apply.sh` は本番以外の環境で、ドリフトを含まない plan に限り許可する（terraform.md 3章）。本番への apply / デプロイは CI/CD 経由に限る"
     ]
   }
 }
