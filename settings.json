@@ -13,7 +13,6 @@
       "Edit(//.claude/rules/**)",
       "Read(//mnt/**)",
       "Read(//etc/**)",
-      "Read(//mnt/c/Users/aibdl/Downloads/**)",
       "Edit(/tmp/**)",
       "Bash(kubectl *)",
       "Bash(gh *)",
