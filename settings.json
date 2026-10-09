@@ -175,8 +175,8 @@
     "environment": [
       "### Org-wide",
       "**Organization**: None configured",
-      "**Cloud provider(s)**: AWS・Oracle Cloud Infrastructure (OCI)・Google Workspace (GAS) — リポジトリごとに異なるため各リポジトリの CLAUDE.md に従う",
-      "**Repository visibility**: 多くが PUBLIC (github.com/Seiya-Nakagawa/*) — push は公開を意味する。機密情報（tfvars・Vault パスワード・state・鍵・IP アドレス・アカウント ID）は可視性に関わらずコミットしない",
+      "**Cloud provider(s)**: 作業リポジトリの CLAUDE.md に記載されたもののみを対象とする。記載のないクラウド・アカウントへの操作は信頼範囲外",
+      "**Repository visibility**: 作業リポジトリは PUBLIC の場合が多い — push は公開を意味する。機密情報（tfvars・Vault パスワード・state・鍵・IP アドレス・アカウント ID）は可視性に関わらずコミットしない",
       "**Internal sharing / snippet hosting**: None configured — 公開の paste / gist サービスは信頼境界の外として扱う",
       "**Secrets management**: 環境変数 / `.env`（gitignore 済み）、SSM Parameter Store / Secrets Manager、Terraform Cloud の sensitive Variables、Ansible Vault",
       "**Default / protected branches**: 各リポジトリの `main` — Ruleset `protect-default-branch`（削除禁止・force push 禁止・PR 必須）が全リポジトリで有効",
