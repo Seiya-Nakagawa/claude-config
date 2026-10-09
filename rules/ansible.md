@@ -1,3 +1,11 @@
+---
+paths:
+  - "**/ansible/**"
+  - "**/playbooks/**"
+  - "**/roles/**"
+  - "**/ansible.cfg"
+---
+
 # Ansible 規約
 
 全リポジトリ共通の Ansible 運用規約。
@@ -20,7 +28,7 @@ Terraform 側の運用は [terraform.md](terraform.md) に従う。
 4. ユーザー: 適用を承認する
 5. AI: 承認後、適用を実行する
 6. AI: 適用結果を報告し、必要に応じて状態を確認する
-   （SSH 経由の確認は [ssh-operations.md](ssh-operations.md) に従う）
+   （SSH 経由の確認は [ssh-operations スキル](../skills/ssh-operations/SKILL.md) に従う）
 
 - 変更を伴う実行は、必ず事前に `--check` で影響範囲を確認する
 - ロール単位で流す場合は、ロール名と同名のタグ（`--tags {ロール名}`）を使用する

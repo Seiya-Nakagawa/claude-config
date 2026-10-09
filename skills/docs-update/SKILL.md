@@ -8,6 +8,7 @@ allowed-tools: Bash, Read, Write, Edit, Glob, Grep
 
 # Docs Update
 
+**着手前に以下の規約を Read する**（`paths` 指定のルールのため、新規作成時は自動では読み込まれない）。
 規約の詳細は [document-standards.md](../../rules/document-standards.md)（体系・章立て・記述ルール）、
 [docs-sync.md](../../rules/docs-sync.md)（同期フロー）、
 [markdown.md](../../rules/markdown.md)（記法）に従う。

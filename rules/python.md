@@ -1,3 +1,10 @@
+---
+paths:
+  - "**/lambda/**/*.py"
+  - "**/python/**/*.py"
+  - "**/requirements.txt"
+---
+
 # Python 規約（サーバーレス関数アプリ向け）
 
 言語共通のスタイル・命名規則・リンターは [coding-standards.md](coding-standards.md) 5章に従う。

@@ -1,3 +1,10 @@
+---
+paths:
+  - "**/*.gs"
+  - "**/appsscript.json"
+  - "**/.clasp.json"
+---
+
 # GAS プロジェクトのデプロイフロー
 
 Google Apps Script（GAS）のコード変更に関する共通規約。

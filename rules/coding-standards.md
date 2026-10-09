@@ -1,3 +1,8 @@
+---
+paths:
+  - "**/*.{py,js,mjs,ts,tsx,gs,html,css,scss,sh}"
+---
+
 # コーディング規約
 
 全リポジトリ共通の言語別コーディング規約。

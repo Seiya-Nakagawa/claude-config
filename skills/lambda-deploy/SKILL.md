@@ -9,8 +9,8 @@ allowed-tools: Bash, Read, Write, Edit, Glob, Grep
 # Lambda Deploy
 
 Lambda 関数リソースは IaC（`terraform/` 等）側で作成済みである前提で、アプリ側は
-関数コードのビルドとデプロイを行う。規約の詳細は [lambda.md](../../rules/lambda.md) と
-[python.md](../../rules/python.md) に従う。
+関数コードのビルドとデプロイを行う。**着手前に [lambda.md](../../rules/lambda.md) と
+[python.md](../../rules/python.md) を Read し**、その規約に従う（`paths` 指定のルールのため自動では読み込まれない場合がある）。
 **ビルド／デプロイスクリプトのパス・関数名・CI のワークフロー名など、リポジトリ固有の値は
 プロジェクト個別の `CLAUDE.md` に従う**。
 

@@ -1,3 +1,10 @@
+---
+name: ssh-operations
+description: >
+  SSH でサーバーの状態確認・ログ収集・設定変更を行うときの手順と、作業証跡ログの保存先・書式。
+  ssh コマンドを実行する前、サーバー作業の証跡を残すとき、証跡ログの保存先を確認するときに使用。
+---
+
 # SSH 操作ルール
 
 ## 基本方針
@@ -93,7 +100,7 @@ ssh {host} "sudo ufw status"
   `~/.claude/projects/-home-seiya-git-{組織}-{リポジトリ}/logs/{対象}/2026-09-18_作業内容.log`）
 - **ファイル命名**: 日付 + 作業内容（例：`2026-05-08_サーバー実状確認.log`）
 - **内容**: 実行コマンド + 生出力（編集しない）
-- 手順書・設計文書など、証跡ログ以外の文書は引き続き [document-standards.md](document-standards.md)
+- 手順書・設計文書など、証跡ログ以外の文書は引き続き [document-standards.md](../../rules/document-standards.md)
   に従いプロジェクトの `docs/` 配下で Git 管理する
 
 ### ログ内容の構成

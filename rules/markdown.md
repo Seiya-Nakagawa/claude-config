@@ -1,3 +1,8 @@
+---
+paths:
+  - "**/*.md"
+---
+
 # Markdown 記法ルール（markdownlint 準拠）
 
 Markdown ファイル（`.md`）を作成・編集する際は、以下の markdownlint ルールに必ず従うこと。

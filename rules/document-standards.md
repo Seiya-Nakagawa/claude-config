@@ -1,3 +1,8 @@
+---
+paths:
+  - "**/docs/**"
+---
+
 # ドキュメント体系規約
 
 全リポジトリ共通の設計文書の体系・フォルダ構成・章立てを定義する。
@@ -69,7 +74,7 @@ docs/
   構築（`03`・`04`。詳細設計書と構築手順書）
 
 作業証跡ログ（`*.log`）は Git 管理外とし、本ディレクトリには置かない。保存先・命名規則は
-[ssh-operations.md](ssh-operations.md) に従う。
+[ssh-operations スキル](../skills/ssh-operations/SKILL.md) に従う。
 
 ### 1.1. 命名規則
 
