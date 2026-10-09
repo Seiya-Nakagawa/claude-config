@@ -1,0 +1,15 @@
+# 許可リスト方式: 既定ですべて除外し、管理対象のみを明示的に含める
+# 認証情報・履歴・セッション・キャッシュ・プロジェクト別データ（証跡ログ・メモリ）は管理しない
+/*
+
+!/.gitignore
+!/README.md
+!/CLAUDE.md
+!/settings.json
+!/rules/
+!/agents/
+!/scripts/
+!/skills/
+
+# Claude が自動同期するスキル（手動管理しない）
+/skills/synced/
