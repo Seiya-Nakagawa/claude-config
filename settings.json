@@ -183,7 +183,7 @@
       "**CI/CD deploy targets**: リポジトリごとに GitHub Actions（PR で CI / plan、main マージで CD）。具体値は各リポジトリの CLAUDE.md に従う",
       "**Network posture**: None configured",
       "**Host containment**: None configured — 通常の開発マシンまたは CI ランナーで、インターネットに開放されている前提とする",
-      "**Source control**: GitHub の Seiya-Nakagawa 配下のリポジトリと各 `origin` のみ",
+      "**Source control**: 作業ディレクトリのリポジトリとその `origin` のみ。他のリポジトリへの push・書き込みは信頼範囲外",
       "**Trusted internal domains**: None configured",
       "**Trusted cloud buckets**: None configured",
       "**Key internal services**: None configured",
@@ -195,9 +195,9 @@
       "**Protected IaC scopes**: IAM・RBAC・ネットワーク（セキュリティリスト等）・クォータ・ノードプール、および名前やタグに `prod` / `production` を含むリソース。最小権限の原則に従う",
       "### User-specific",
       "**Primary use of Claude Code**: 個人開発（Terraform / Ansible / Lambda / GAS / Django）のコード編集とインフラ運用",
-      "**Trusted repo**: 作業ディレクトリのリポジトリと、その `origin`（github.com/Seiya-Nakagawa/*）のみ。公開リポジトリのため当該リポジトリ自身の成果物以外を置かない",
+      "**Trusted repo**: 作業ディレクトリのリポジトリと、その `origin` のみ。公開リポジトリのため当該リポジトリ自身の成果物以外を置かない",
       "**Org-specific CLIs**: None configured",
-      "routine: `~/.claude/scripts/tf_plan.sh`・`tf_apply.sh`（apply は本番以外、かつドリフトなしの場合）・`ansible-playbook --check` は定常のドライラン / 適用操作。本番への apply / デプロイは CI/CD 経由に限る"
+      "routine: `~/.claude/scripts/tf_plan.sh` と `ansible-playbook --check` は定常のドライラン操作。`tf_apply.sh` は本番以外の環境で、ドリフトを含まない plan に限り許可する（terraform.md 3章）。本番への apply / デプロイは CI/CD 経由に限る"
     ]
   }
 }
