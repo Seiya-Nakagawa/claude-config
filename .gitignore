@@ -1,11 +1,11 @@
 # 許可リスト方式: 既定ですべて除外し、管理対象のみを明示的に含める
 # 認証情報・履歴・セッション・キャッシュ・プロジェクト別データ（証跡ログ・メモリ）は管理しない
-# settings.json は環境固有の情報（接続先ホスト等）を含み Claude Code が自動で書き換えるため、公開リポジトリでは管理しない
 /*
 
 !/.gitignore
 !/README.md
 !/CLAUDE.md
+!/settings.json
 !/rules/
 !/agents/
 !/scripts/

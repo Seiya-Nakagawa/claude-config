@@ -8,6 +8,7 @@ Claude Code のグローバル設定（`~/.claude/`）を管理するリポジ�
 | パス | 内容 |
 | ---- | ---- |
 | `CLAUDE.md` | グローバル規約（全プロジェクト共通の基本方針） |
+| `settings.json` | ユーザー設定（権限・hook・有効化するプラグイン） |
 | `rules/` | 分野別の規約 |
 | `skills/` | スキル（自動同期される `skills/synced/` は除く） |
 | `agents/` | サブエージェント定義 |
@@ -17,9 +18,6 @@ Claude Code のグローバル設定（`~/.claude/`）を管理するリポジ�
 
 - 認証情報（`.credentials.json`）・履歴・セッション・キャッシュ
 - `projects/`（証跡ログ・メモリ）
-- `settings.json`（権限・hook・プラグイン設定）。接続先ホスト等の環境固有の情報を含み、
-  Claude Code 自身が自動で書き換えるため、公開リポジトリでは管理しない。
-  新しい端末ではプラグインと hook を下記「セットアップ」に従って再設定する
 
 ## セットアップ（新しい端末）
 
@@ -57,24 +55,6 @@ docker pull hashicorp/terraform-mcp-server:0.4.0      # terraform プラグイ�
 | `deploy-on-aws` | AWS 構成図・コスト見積り |
 | `playwright` | 画面の動作確認 |
 
-### hook
-
-`~/.claude/settings.json` の `hooks` に以下を設定する。
-
-```json
-{
-  "PreToolUse": [
-    { "matcher": "Bash", "hooks": [
-      { "type": "command", "command": "bash $HOME/.claude/scripts/block-protected-git-push.sh" } ] }
-  ],
-  "PostToolUse": [
-    { "matcher": "Write|Edit", "hooks": [
-      { "type": "command", "command": "bash $HOME/.claude/scripts/markdownlint-fix.sh" },
-      { "type": "command", "command": "bash $HOME/.claude/scripts/chmod-shell-scripts.sh" } ] }
-  ]
-}
-```
-
 ## 規約の構成
 
 公式の推奨（常時読み込む内容は最小限、手順はスキル、特定ファイルにのみ関係する規約は `paths` 指定）に沿って配置する。
@@ -91,3 +71,7 @@ docker pull hashicorp/terraform-mcp-server:0.4.0      # terraform プラグイ�
 - 変更は他リポジトリと同じく PR ベースで行う（`rules/git-workflow.md`）
 - **公開リポジトリである**。接続先ホスト・アカウント ID・顧客名等の環境固有の情報や機密情報は
   規約・スキルに書かず、プロジェクト個別の `CLAUDE.md` やメモリに置く
+- `settings.json` の権限ルールで SSH 接続先を指定する場合は、IP アドレスではなく `~/.ssh/config` の
+  ホスト別名（例: `ssh oci-server`）を使う
+- `settings.json` は Claude Code 自身も書き換える（`/config`・プラグインの導入・権限の常時許可等）。
+  コミット前に差分を確認し、機密情報や IP アドレスが混入していないことを確かめる
