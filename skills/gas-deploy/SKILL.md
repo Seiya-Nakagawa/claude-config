@@ -8,7 +8,7 @@ allowed-tools: Bash, Read, Write, Edit, Glob, Grep
 
 # GAS Deploy
 
-規約の詳細は [gas-deploy-flow.md](../../rules/gas-deploy-flow.md) に従う。
+**着手前に [gas-deploy-flow.md](../../rules/gas-deploy-flow.md) を Read する**（`paths` 指定のルールのため、`.gs` 等に触れるまで自動では読み込まれない）。規約の詳細は同ファイルに従う。
 **スクリプト ID・デプロイメント ID・公開 URL など、リポジトリ固有の識別子は
 プロジェクト個別の `CLAUDE.md` に従う**。
 

@@ -8,7 +8,7 @@ allowed-tools: Bash, Read, Write, Edit, Glob, Grep
 
 # Terraform Deploy
 
-規約の詳細は [terraform.md](../../rules/terraform.md) に従う。
+**着手前に [terraform.md](../../rules/terraform.md) を Read する**（`paths` 指定のルールのため、`.tf` に触れるまで自動では読み込まれない）。規約の詳細は同ファイルに従う。
 plan / apply は共通スクリプト（`~/.claude/scripts/tf_plan.sh`・`tf_apply.sh`。
 [terraform.md](../../rules/terraform.md) 10章）を使う。
 **認証スクリプト・CI のワークフロー名など、リポジトリ固有の値は

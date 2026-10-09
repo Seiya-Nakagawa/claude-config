@@ -1,3 +1,11 @@
+---
+paths:
+  - "**/*.tf"
+  - "**/*.tfvars"
+  - "**/*.tftest.hcl"
+  - "**/.terraform.lock.hcl"
+---
+
 # Terraform 規約
 
 全リポジトリ共通の Terraform 運用規約。
@@ -103,7 +111,7 @@ apply 結果がステージングと同件数であることを確認する。
 ## 10. 標準スクリプト
 
 plan / apply / SSH 接続は、`~/.claude/scripts/` の共通スクリプトを使う
-（[shell-operations.md](shell-operations.md) 7章）。リポジトリルートから実行し、
+（[shell-operations.md](shell-operations.md) 4章）。リポジトリルートから実行し、
 リポジトリ内にラッパースクリプトを複製しない。
 
 | スクリプト | 内容 |

@@ -23,7 +23,8 @@
 - **ファイルの変更内容は、チャット上の応答だけで把握できるように提示する**。
   「〇〇を修正しました」で済ませず、変更差分（追加・削除・変更点）を要約して本文中に示す。
   ユーザーがファイルを開くのは、詳細を自分で確認したいときに限る
-- **共通規約は本グローバル規約および `~/.claude/rules/` 配下で一元管理する**。
+- **共通規約は本グローバル規約および `~/.claude/rules/`・`~/.claude/skills/` 配下で一元管理する**。
+  常時読み込まれる規約は事実・原則に絞り、手順はスキル、特定ファイルにのみ関係する規約は `paths` 指定のルールに置く
   プロジェクト個別の `CLAUDE.md` には、そのリポジトリ固有の事情のみを記載する（第5章参照）
 - ユーザーから修正指示があった場合、それが永続的な規約（`CLAUDE.md`, `.claude`配下 等）に反映すべき内容かを確認し、必要であれば規約自体を更新する
 - `.claude/rules/` 配下のルールを更新した場合、対応するスキルが存在すればその `SKILL.md` も同時に更新する
@@ -33,22 +34,37 @@
 
 ## 4. 各種規約
 
-作業内容に応じて、以下のルールファイルを読み込み、その指示に従うこと。
+規約は読み込まれ方によって3種類に分けている。
 
-- **Git 運用規約**: [~/.claude/rules/git-workflow.md](rules/git-workflow.md) — **全変更で必読**。PR ベースの運用、`main` 直接プッシュ禁止、リリース方針（デプロイ・動作確認 → PR → CI → マージ → CD）、承認フロー
-- **コーディング規約**: [~/.claude/rules/coding-standards.md](rules/coding-standards.md) — 言語別のスタイル、リンター、命名規則
-- **ログ出力規約**: [~/.claude/rules/logging.md](rules/logging.md) — ログレベルの使い分け、出力時の注意点
-- **Markdown 記法**: [~/.claude/rules/markdown.md](rules/markdown.md) — markdownlint 準拠
-- **ドキュメント体系**: [~/.claude/rules/document-standards.md](rules/document-standards.md) — 要件定義 / 基本設計 / 詳細設計のスコープ定義。**全プロジェクトで要件定義書・基本設計書の作成を必須とする**。インフラ管理プロジェクトは基本設計書を分野ごとの章立てに分割する
-- **ドキュメント同期**: [~/.claude/rules/docs-sync.md](rules/docs-sync.md) — コード変更時のドキュメント更新
-- **セキュリティ規約**: [~/.claude/rules/security.md](rules/security.md) — 機密情報の管理、IaC / サーバーレスでの扱い、AI による本番操作
-- **シェル操作・スクリプト規約**: [~/.claude/rules/shell-operations.md](rules/shell-operations.md) — コマンド実行方針、スクリプトの出力ポリシー、実行権限
-- **SSH 操作規約**: [~/.claude/rules/ssh-operations.md](rules/ssh-operations.md) — SSH コマンド実行、証跡記録、サーバー作業の流れ
-- **Terraform 規約**: [~/.claude/rules/terraform.md](rules/terraform.md) — plan / apply の担当分担、tf ファイル分割、環境ごとの適用方針、標準スクリプト
-- **Ansible 規約**: [~/.claude/rules/ansible.md](rules/ansible.md) — 実行担当の分担、ドライラン先行の作業順序、Vault による機密情報管理
-- **AWS Lambda 規約**: [~/.claude/rules/lambda.md](rules/lambda.md) — IaC との責務分担、デプロイフロー、CLI 動作確認
-- **Python 規約**: [~/.claude/rules/python.md](rules/python.md) — サーバーレス関数アプリの構成・実装方針・テスト
-- **GAS デプロイ**: [~/.claude/rules/gas-deploy-flow.md](rules/gas-deploy-flow.md) — Google Apps Script のデプロイフロー、デプロイメント ID の固定化
+### 4.1. 常時読み込まれる規約
+
+- **Git 運用規約**: [git-workflow.md](rules/git-workflow.md) — PR ベースの運用、`main` 直接プッシュ禁止、リリース方針（デプロイ・動作確認 → PR → CI → マージ → CD）、承認フロー
+- **ドキュメント同期**: [docs-sync.md](rules/docs-sync.md) — 設計書を先に更新してからコード修正、コード変更時のドキュメント更新
+- **セキュリティ規約**: [security.md](rules/security.md) — 機密情報の管理、IaC / サーバーレスでの扱い、AI による本番操作
+- **シェル操作規約**: [shell-operations.md](rules/shell-operations.md) — コマンド実行方針、共通スクリプト、常駐プロセスの後始末
+
+### 4.2. 該当ファイルを扱うときに読み込まれる規約（`paths` 指定）
+
+該当ファイルを Read / Write / Edit した時点で自動的に読み込まれる。**該当ファイルに触れる前に
+作業を始める場合（文書・コードの新規作成、`plan` / `apply`・デプロイの実行等）は、先に該当する規約を Read する。**
+
+| 規約 | 対象 |
+| ---- | ---- |
+| [document-standards.md](rules/document-standards.md) — 文書体系・章立て。**全プロジェクトで要件定義書・基本設計書の作成を必須とする** | `docs/` 配下 |
+| [markdown.md](rules/markdown.md) — markdownlint 準拠 | `*.md` |
+| [coding-standards.md](rules/coding-standards.md) — 言語別スタイル・命名規則 | ソースコード |
+| [logging.md](rules/logging.md) — ログレベル・出力時の注意 | ソースコード |
+| [shell-scripting.md](rules/shell-scripting.md) — スクリプトの出力方針・作成ルール | `*.sh` |
+| [terraform.md](rules/terraform.md) — plan / apply の分担、tf ファイル分割 | `*.tf` 等 |
+| [ansible.md](rules/ansible.md) — ドライラン先行、Vault | `ansible/` 等 |
+| [lambda.md](rules/lambda.md) — IaC との責務分担、デプロイフロー | `lambda/` 等 |
+| [python.md](rules/python.md) — サーバーレス関数アプリの構成 | `lambda/`・`python/` 配下の `*.py` |
+| [gas-deploy-flow.md](rules/gas-deploy-flow.md) — GAS デプロイ、デプロイメント ID 固定 | `*.gs`・`appsscript.json` |
+
+### 4.3. スキル（手順。必要なときに読み込まれる）
+
+`feature-flow`（Issue〜マージの共通フロー）、`tf-deploy`、`lambda-deploy`、`gas-deploy`、`docs-update`、
+`ssh-operations`（SSH 作業・証跡ログ）。実体は `~/.claude/skills/` にある
 
 ## 5. プロジェクト個別規約（`CLAUDE.md`）
 
@@ -65,7 +81,7 @@
 - コーディング規約、ログ出力規約、Markdown 記法
 - ドキュメント体系・ドキュメント同期の一般ルール
 - セキュリティ規約（機密情報の管理、IaC / サーバーレスでの扱い、AI による本番操作の原則）
-- シェル操作・スクリプト規約、SSH 操作規約
+- シェル操作・スクリプト規約、SSH 操作手順
 - Terraform / AWS Lambda / Python / GAS の一般的な作業フロー・デプロイ手順
 - スキル（`SKILL.md`）・サブエージェント定義。実体は `~/.claude/skills/`・`~/.claude/agents/` に集約し、
   プロジェクト配下（`.claude/skills/`・`.claude/agents/`）に複製しない

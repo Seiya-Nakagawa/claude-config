@@ -1,3 +1,10 @@
+---
+paths:
+  - "**/lambda/**"
+  - "**/template.yaml"
+  - "**/samconfig.toml"
+---
+
 # AWS Lambda 規約
 
 全リポジトリ共通の Lambda 運用規約。

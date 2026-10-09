@@ -11,6 +11,7 @@ allowed-tools: Bash, Read, Write, Edit, Glob, Grep
 
 Issue 起票からマージまでの一連の流れを実行する。
 規約の詳細は [git-workflow.md](../../rules/git-workflow.md) に従う。
+Milestone・Project・`gh` の詳細手順は [GitHub 運用リファレンス](github-reference.md) を参照する。
 PR ラベルは git-workflow.md 5章の標準ラベルを使う。
 CI のワークフロー名等の**リポジトリ固有の値は、
 プロジェクト個別の `CLAUDE.md` に従う**。
@@ -38,14 +39,14 @@ gh auth status
 ## 3. Issue 作成 / 参照
 
 既存 Issue が指定された場合は新規作成をスキップし、内容を取得する
-（`gh issue view` は `--json` 必須。[git-workflow.md](../../rules/git-workflow.md) 11.1 参照）。
+（`gh issue view` は `--json` 必須。[GitHub 運用リファレンス](github-reference.md) 11.1 参照）。
 
 ```bash
 gh issue view {番号} --json title,body,labels,assignees,milestone,comments
 ```
 
 取得後、タイトルと本文が規約フォーマットに沿っていなければ更新する
-（[git-workflow.md](../../rules/git-workflow.md) 11.2 参照）。
+（[GitHub 運用リファレンス](github-reference.md) 11.2 参照）。
 
 **Issue の起票はユーザーの確認を待たずに行う**（可逆操作のため承認対象としない。
 [git-workflow.md](../../rules/git-workflow.md) 1章参照）。作業中に見つけた別件の課題・
@@ -54,7 +55,7 @@ gh issue view {番号} --json title,body,labels,assignees,milestone,comments
 
 新規作成の場合、Milestone・Project は設定しない。大きな対応でタスク管理が必要な場合のみ、
 該当するフェーズの Milestone を `--milestone "{NN.フェーズ名}"` で設定する
-（[git-workflow.md](../../rules/git-workflow.md) 8章参照）。
+（[GitHub 運用リファレンス](github-reference.md) 8章参照）。
 
 ```bash
 gh issue create \
@@ -139,7 +140,7 @@ PR オープンを契機に、GitHub Actions で CI またはドライラン（T
 構成の場合がある。動作確認前のコード変更は PR にしない。
 
 `gh pr create` はヒアドキュメント展開形式を使う
-（[git-workflow.md](../../rules/git-workflow.md) 11.3 参照）。
+（[GitHub 運用リファレンス](github-reference.md) 11.3 参照）。
 
 ```bash
 gh pr create \
@@ -191,5 +192,5 @@ CI で問題が検出された場合は、修正のうえ手順6（デプロイ�
 Apply 確認が完了した後、ローカル・リモートの作業ブランチを整理する
 （`--delete-branch` 付きでマージした場合は自動で完了している）。
 
-その後、[git-workflow.md](../../rules/git-workflow.md) 10章に従い、対応する GitHub Project の
+その後、[GitHub 運用リファレンス](github-reference.md) 10章に従い、対応する GitHub Project の
 全アイテムが完了していれば Project をクローズする。
