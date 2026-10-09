@@ -8,14 +8,18 @@ Claude Code のグローバル設定（`~/.claude/`）を管理するリポジ�
 | パス | 内容 |
 | ---- | ---- |
 | `CLAUDE.md` | グローバル規約（全プロジェクト共通の基本方針） |
-| `settings.json` | Claude Code のユーザー設定（権限・hook・プラグイン） |
 | `rules/` | 分野別の規約 |
 | `skills/` | スキル（自動同期される `skills/synced/` は除く） |
 | `agents/` | サブエージェント定義 |
 | `scripts/` | hook・AI 実行用の共通スクリプト |
 
-認証情報（`.credentials.json`）・履歴・セッション・キャッシュ・`projects/`（証跡ログ・メモリ）は
-`.gitignore` の許可リスト方式により管理対象外とする。
+以下は `.gitignore` の許可リスト方式により管理対象外とする。
+
+- 認証情報（`.credentials.json`）・履歴・セッション・キャッシュ
+- `projects/`（証跡ログ・メモリ）
+- `settings.json`（権限・hook・プラグイン設定）。接続先ホスト等の環境固有の情報を含み、
+  Claude Code 自身が自動で書き換えるため、公開リポジトリでは管理しない。
+  新しい端末では hook 設定（`scripts/` の呼び出し）を手動で再設定する
 
 ## セットアップ（新しい端末）
 
@@ -34,5 +38,5 @@ git -C ~/.claude branch -u origin/main
 ## 運用
 
 - 変更は他リポジトリと同じく PR ベースで行う（`rules/git-workflow.md`）
-- `settings.json` は Claude Code 自身も書き換えるため（`/config`・権限の許可等）、
-  差分が出ていないか作業前に `git -C ~/.claude status` で確認する
+- **公開リポジトリである**。接続先ホスト・アカウント ID・顧客名等の環境固有の情報や機密情報は
+  規約・スキルに書かず、プロジェクト個別の `CLAUDE.md` やメモリに置く
