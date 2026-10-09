@@ -1,6 +1,6 @@
 ---
 name: security-auditor
-description: コードベースのセキュリティ脆弱性を分析する専門エージェント。デプロイ前チェックやセキュリティレビュー時に使用する。
+description: リポジトリ全体を Terraform・GAS・Lambda 固有の観点と rules/security.md で監査する専門エージェント。差分のレビューは公式の /security-review を使う。
 tools:
   - Read
   - Grep

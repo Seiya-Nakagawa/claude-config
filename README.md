@@ -55,6 +55,14 @@ docker pull hashicorp/terraform-mcp-server:0.4.0      # terraform プラグイ�
 | `deploy-on-aws` | AWS 構成図・コスト見積り |
 | `playwright` | 画面の動作確認 |
 
+### セキュリティレビューの使い分け
+
+| 手段 | 対象 | 用途 |
+| ---- | ---- | ---- |
+| `security-guidance`（プラグイン） | 編集中のコード | 編集時に危険なパターンを警告する |
+| `/security-review`（公式コマンド） | 現在のブランチの差分 | PR 前の脆弱性レビュー。`origin/HEAD` が未設定のリポジトリでは `git remote set-head origin -a` が必要 |
+| `security-auditor`（独自エージェント） | リポジトリ全体 | Terraform・GAS・Lambda 固有の観点と `rules/security.md` に基づく監査。公式にない観点のため残す |
+
 ## 規約の構成
 
 公式の推奨（常時読み込む内容は最小限、手順はスキル、特定ファイルにのみ関係する規約は `paths` 指定）に沿って配置する。
