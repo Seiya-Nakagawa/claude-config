@@ -145,7 +145,9 @@
 
 `main` への直接 push と force push は、PreToolUse hook（`scripts/block-protected-git-push.sh`）で
 機械的にブロックしている。ユーザーの指示で force push が必要な場合は、ユーザー自身に
-`! git push --force ...` での実行を依頼する。
+`! git push --force ...` での実行を依頼する。hook は文字列照合によるガードレールのため、
+最終的な防御として各リポジトリのデフォルトブランチに GitHub Ruleset（削除禁止・force push 禁止・
+PR 必須）を設定する。新規リポジトリの作成時も同じ Ruleset を設定する。
 
 ## 7. `.claude` 配下の変更
 

@@ -15,19 +15,11 @@
       "Read(//etc/**)",
       "Read(//mnt/c/Users/aibdl/Downloads/**)",
       "Edit(/tmp/**)",
-      "Bash(*/scripts/*)",
-      "Bash(*.sh)",
-      "Bash(*.sh *)",
       "Bash(kubectl *)",
-      "Bash(docker *)",
       "Bash(gh *)",
-      "Bash(find *)",
-      "Bash(xargs *)",
       "Bash(head *)",
       "Bash(grep *)",
-      "Bash(ssh oci-server *)",
       "Bash(oci vault *)",
-      "Bash(oci secrets *)",
       "Bash(oci kms *)",
       "Bash(oci iam *)",
       "Bash(oci network *)",
@@ -43,7 +35,10 @@
       "Bash(rm -rf /tmp/*)",
       "Bash(rm -fr /tmp/*)",
       "Bash(pkill -f \"manage.py runserver\")",
-      "Bash(pgrep -af \"manage.py runserver\")"
+      "Bash(pgrep -af \"manage.py runserver\")",
+      "Bash(./scripts/*)",
+      "Bash(~/.claude/scripts/*)",
+      "Bash(/home/seiya/.claude/scripts/*)"
     ],
     "deny": [
       "Bash(sudo *)",
@@ -83,7 +78,8 @@
       "Bash(aws s3 cp *)",
       "Bash(aws s3 mv *)",
       "Bash(aws s3 rm *)",
-      "Bash(aws s3 sync *)"
+      "Bash(aws s3 sync *)",
+      "Read(~/.claude/.credentials.json)"
     ],
     "ask": [
       "Bash(git push --force*)",
