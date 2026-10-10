@@ -59,7 +59,7 @@ docker pull hashicorp/terraform-mcp-server:0.4.0      # terraform プラグイ�
 
 | 手段 | 対象 | 用途 |
 | ---- | ---- | ---- |
-| `security-guidance`（プラグイン） | 編集中のコード | 編集時に危険なパターンを警告する |
+| `security-guidance`（プラグイン） | 編集中のコード・ターン終了時の差分・コミット | 編集時に危険なパターンを警告し、差分とコミットを LLM でレビューする。LLM レビューは既定では Opus で動き、毎ターン実行されて使用量を大きく消費するため、`settings.json` の `env`（`SECURITY_REVIEW_MODEL`・`SG_AGENTIC_MODEL`）で Sonnet に変更している |
 | `/security-review`（公式コマンド） | 現在のブランチの差分 | PR 前の脆弱性レビュー。`origin/HEAD` が未設定のリポジトリでは `git remote set-head origin -a` が必要 |
 | `security-auditor`（独自エージェント） | リポジトリ全体 | Terraform・GAS・Lambda 固有の観点と `rules/security.md` に基づく監査。公式にない観点のため残す |
 
