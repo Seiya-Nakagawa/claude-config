@@ -52,6 +52,12 @@ if grep -qE "([[:space:]:]|[[:space:]][\"'])(refs/heads/)?(${PROTECTED_BRANCHES}
     block "main への直接 push はブロックされました。"
 fi
 
+# リモートブランチの削除（--delete / -d / :branch）は現在のブランチに依存しないため許可する
+# main 自体の削除は上の明示的な main への push の判定でブロック済み
+if grep -qE '[[:space:]](--delete|-d)([[:space:]]|$)|[[:space:]]:[^[:space:]]+' <<<"$PUSH_ARGS"; then
+    exit 0
+fi
+
 # 引数なしの git push は、現在のブランチが main なら main への push になる
 # git -C <path> 指定がある場合はそのパスで判定する
 REPO_DIR=$(grep -oE -- '-C[[:space:]]+[^[:space:]]+' <<<"$PUSH_SEGMENT" | head -n 1 | awk '{print $2}' | tr -d "\"'")
