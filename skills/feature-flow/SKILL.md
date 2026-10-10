@@ -56,7 +56,7 @@ gh issue view {番号} --json title,body,labels,assignees,milestone,comments
 
 新規作成の場合、Milestone・Project は設定しない。大きな対応でタスク管理が必要な場合のみ、
 該当するフェーズの Milestone を `--milestone "{NN.フェーズ名}"` で設定する
-（[GitHub 運用リファレンス](github-reference.md) 8章参照）。
+（移行型プロジェクトは `{案件名} NN.フェーズ名`。[GitHub 運用リファレンス](github-reference.md) 8章参照）。
 
 ```bash
 gh issue create \
