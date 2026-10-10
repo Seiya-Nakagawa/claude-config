@@ -91,6 +91,10 @@
     ],
     "defaultMode": "auto"
   },
+  "env": {
+    "SECURITY_REVIEW_MODEL": "claude-sonnet-5-5",
+    "SG_AGENTIC_MODEL": "claude-sonnet-5-5"
+  },
   "model": "sonnet",
   "hooks": {
     "PostToolUse": [
