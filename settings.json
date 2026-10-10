@@ -1,5 +1,9 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "env": {
+    "SECURITY_REVIEW_MODEL": "claude-sonnet-5-5",
+    "SG_AGENTIC_MODEL": "claude-sonnet-5-5"
+  },
   "permissions": {
     "allow": [
       "Read",
@@ -90,10 +94,6 @@
       "Bash(aws ssm put-parameter*)"
     ],
     "defaultMode": "auto"
-  },
-  "env": {
-    "SECURITY_REVIEW_MODEL": "claude-sonnet-5-5",
-    "SG_AGENTIC_MODEL": "claude-sonnet-5-5"
   },
   "model": "sonnet",
   "hooks": {
